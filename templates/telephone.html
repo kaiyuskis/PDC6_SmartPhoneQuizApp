@@ -1,0 +1,44 @@
+<!-- base.htmlから引継ぎ -->
+{% extends 'base.html' %}
+
+{% block body %}
+<header class="text-center mt-2">
+    <h1 class="display-3 fw-bold"><i class="bi bi-telephone-fill"></i>電話</h1>
+</header>
+
+<section class="text-center py-3">
+    {% for video in videos %}
+        <div class="d-flex justify-content-center">
+            <a href="#" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button" data-bs-toggle="modal" data-bs-target="#videoModal" onclick="changeVideo('{{ video.path }}', '{{ video.id }}')">
+                {{ video.name }}
+            </a>
+            <span id="videoStatus{{ video.id }}">{{ '視聴済み' if video.watched else '未視聴' }}</span>
+        </div>
+    {% endfor %}
+    <div class="">
+        <a href="{{ url_for('index') }}" class="btn btn-secondary btn-lg fs-1 fw-bold shadow" role="button">
+            戻る
+        </a>
+    </div>
+</section>
+
+
+{% include 'modal_content.html' %}
+
+<script>
+    function changeVideo(videoPath, videoId) {
+        // 動画パスの更新
+        document.getElementById('videoSource').src = videoPath;
+        // 動画再読み込み
+        document.getElementById('video').load();
+        // 視聴状態の更新リクエストを送信
+        fetch('/watch_video/' + videoId, { method: 'POST' })
+            .then(response => response.json())
+            .then(data => console.log(data));
+        // 視聴状態を動的に更新
+        document.getElementById('videoStatus' + videoId).textContent = '視聴済み';
+    }
+</script>
+
+{% endblock %}
+
