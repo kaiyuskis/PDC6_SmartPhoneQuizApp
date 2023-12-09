@@ -12,60 +12,59 @@
 </head>
 
 <body>
-<header class="text-center mt-2">
-    <h1 class="display-3 fw-bold"><i class="bi bi-envelope-fill"></i>メール</h1>
-</header>
+    <header class="text-center mt-2">
+        <h1 class="display-3 fw-bold"><i class="bi bi-envelope-fill"></i>メール</h1>
+    </header>
 
-<section class="text-center py-3">
-    <div class="">
-        <div class="d-flex justify-content-center">
-            <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                受信メールの見方
-            </a>
-        </div>
-
-        <div class="d-flex justify-content-center">
-            <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                メールの送り方
-            </a>
-        </div>
-
-        <div class="d-flex justify-content-center">
-            <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                メールの保存方法
-            </a>
-        </div>
-
-        <div class="d-flex justify-content-center">
-            <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                メールアドレスの確認方法
-            </a>
-        </div>
-    </div>
-    <div class="">
-        <a href="{{ url_for('home') }}" class="btn btn-secondary btn-lg fs-1 fw-bold shadow" role="button">
-            戻る
-        </a>
-    </div>
-</section>
-
-<div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="videoModalLabel">動画タイトル</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <section class="text-center py-3">
+        <div class="">
+            <div class="d-flex justify-content-center">
+                <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
+                    受信メールの見方
+                </a>
             </div>
-            <div class="modal-body">
-                <!-- 動画ファイルのパスを指定 -->
-                <video controls width="100%">
-                    <source src="" type="video/mp4">
-                    Your browser does not support the video tag.
-                </video>
+
+            <div class="d-flex justify-content-center">
+                <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
+                    メールの送り方
+                </a>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
+                    メールの保存方法
+                </a>
+            </div>
+
+            <div class="d-flex justify-content-center">
+                <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
+                    メールアドレスの確認方法
+                </a>
             </div>
         </div>
-    </div>
-</div>
+        <div class="">
+            <a href="/" class="btn btn-secondary btn-lg fs-1 fw-bold shadow" role="button">
+                戻る
+            </a>
+        </div>
+    </section>
 
+    <div class="modal fade" id="videoModal" tabindex="-1" aria-labelledby="videoModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="videoModalLabel">動画タイトル</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <!-- 動画ファイルのパスを指定 -->
+                    <video controls width="100%">
+                        <source src="" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
