@@ -74,4 +74,25 @@
     </div>
 </body>
 
+<script>
+    function changeVideo(videoPath, videoId) {
+        // 動画パスの更新
+        document.getElementById('videoSource').src = videoPath;
+        // 動画再読み込み
+        document.getElementById('video').load();
+        // 視聴状態の更新リクエストを送信
+        fetch('/watch_video/' + videoId, { method: 'POST' })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => console.log(data))
+            .catch(error => console.error('Fetch error:', error));
+        // 視聴状態を動的に更新
+        document.getElementById('videoStatus' + videoId).textContent = '視聴済み';
+    }
+</script>
+
 </html>

@@ -11,17 +11,15 @@ app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///db.sqlite3'
 db = SQLAlchemy(app)
 
 
-# データベースのモデル
+# データベースのテーブル作成
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(100), nullable=False)
-    password_hash = db.Column(db.String(128))
-
-    def set_password(self, password):
-        self.password_hash = generate_password_hash(password)
-
-    def check_password(self, password):
-        return check_password_hash(self.password_hash, password)
+    sei = db.Column(db.String(50), nullable=False)
+    mei = db.Column(db.String(50), nullable=False)
+    name = db.Column(db.String(50), nullable=False, unique=True)
+    year = db.Column(db.Integer, nullable=False)
+    month = db.Column(db.Integer, nullable=False)
+    day = db.Column(db.Integer, nullable=False)
 
 class Video(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -36,7 +34,6 @@ class WatchStatus(db.Model):
     watched = db.Column(db.Boolean, default=False)
 
 # 変数の初期化
-katakana_pattern = re.compile(r'^[\u30A1-\u30F6\s]')
 login_manager = LoginManager()
 login_manager.init_app(app)
 login_manager.login_view = 'login'
@@ -51,21 +48,23 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
+        sei = request.form['sei']
+        mei = request.form['mei']
         name = request.form['name']
-        password = request.form['password']
+        year = request.form['year']
+        month = request.form['month']
+        day = request.form['day']
 
         # ユーザー名の重複をチェック
         user = User.query.filter_by(name=name).first()
         if user:
-            return render_template('register.html', error='この名前は既に登録されています。')
+            return render_template('register.html', error='この表示名は既に使われています。他の表示名を入力してください。')
 
-        # 新規ユーザーの作成とデータベースへの追加
-        new_user = User(name=name)
-        new_user.set_password(password)  # パスワードをハッシュ化して保存
-        db.session.add(new_user)
-        db.session.commit()
-
-        return redirect(url_for('login'))
+        else:
+            new_user = User(sei=sei, mei=mei, name=name, year=year, month=month, day=day)
+            db.session.add(new_user)
+            db.session.commit()
+            return redirect(url_for('login'))
 
     return render_template('register.html')
 
@@ -73,14 +72,13 @@ def register():
 def login():
     if request.method == 'POST':
         name = request.form['name']
-        password = request.form['password']
-        user = User.query.filter_by(name=name).first()
 
-        if user and user.check_password(password):
+        user = User.query.filter_by(name=name).first()
+        if user:
             login_user(user)
-            return redirect(url_for('home'))
+            return redirect(url_for('index'))
         else:
-            return render_template('login.html', error='正しい名前とパスワードを入力してください。')
+            return render_template('login.html', error='入力した情報が間違っているか、登録されていません。')
 
     return render_template('login.html')
 
@@ -88,54 +86,65 @@ def login():
 @login_required
 def logout():
     logout_user()
-    return render_template('home.html')
+    return render_template('index.html')
 
 @login_manager.user_loader
 def load_user(user_id):
-    return User.query.get(int(user_id))
+    return db.session.get(User, int(user_id))
 
 @app.route('/telephone')
+@login_required
 def telephone():
     videos = Video.query.filter_by(category='telephone').all()  # 仮にカテゴリが 'telephone' でフィルタリング
-    return render_template('telephone.html', videos=videos)
+    status = WatchStatus.query.all()
+    return render_template('telephone.html', videos=videos, status=status)
 
 @app.route('/mail')
 def mail():
-    return render_template('mail.html')
+    videos = Video.query.filter_by(category='mail').all()
+    return render_template('mail.html', videos=videos)
 
 @app.route('/camera')
 def camera():
-    return render_template('camera.html')
+    videos = Video.query.filter_by(category='camera').all()
+    return render_template('camera.html', videos=videos)
 
 @app.route('/internet')
 def internet():
-    return render_template('internet.html')
+    videos = Video.query.filter_by(category='internet').all()
+    return render_template('internet.html', videos=videos)
 
 @app.route('/map')
 def map():
-    return render_template('map.html')
+    videos = Video.query.filter_by(category='map').all()
+    return render_template('map.html', videos=videos)
 
 @app.route('/screen')
 def screen():
-    return render_template('screen.html')
+    videos = Video.query.filter_by(category='screen').all()
+    return render_template('screen.html', videos=videos)
 
 @app.route('/quiz')
 def quiz():
     return render_template('quiz.html')
 
-@app.route('/watch_video/<int:video_id>')
-@login_required
-def watch_video(video_id):
-    # 視聴状態がすでに存在するかどうかを確認し、存在しない場合は作成
-    watch_status = WatchStatus.query.filter_by(user_id=current_user.id, video_id=video_id).first()
-    if not watch_status:
-        watch_status = WatchStatus(user_id=current_user.id, video_id=video_id, watched=True)
-        db.session.add(watch_status)
+@app.route('/information')
+def information():
+    return render_template('information.html')
+
+@app.route('/video/<int:id>')
+def video(id):
+    video = Video.query.filter_by(id=id)
+    status = WatchStatus.query.filter_by(user_id=current_user.id, video_id=id).first()
+    if not status:
+        status = WatchStatus(user_id=current_user.id, video_id=id, watched=True)
+        db.session.add(status)
     else:
-        watch_status.watched = True
+        status.watched = True
+
     db.session.commit()
 
-    return jsonify({'message': 'Watch status updated'})
+    return render_template('video.html', video=video)
 
 if __name__ == "__main__":
     app.run(debug=True)

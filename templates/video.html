@@ -12,33 +12,10 @@
 </head>
 
 <body>
-<header class="text-center mt-2">
-    <h1 class="display-3 fw-bold"><i class="bi bi-telephone-fill"></i>電話</h1>
-</header>
-
-<section class="text-center py-3">
-    {% for video in videos %}
-        <div class="d-flex justify-content-center">
-            <a href="/video/{{ video.id }}" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                {{ video.name }}
-            </a>
-            {%for i in status %}
-                {% if video.id==i.video_id %}
-                    {% if i.watched==True %}
-                    <p>視聴済み</p>
-                    {% else %}
-                    <p>未視聴</p>
-                    {% endif %}
-                {% endif %}
-            {% endfor %}
-        </div>
+    {% for i in video %}
+    <video controls width="300" height="560" autoplay muted playsinline src="{{ i.path }}"></video>
+    <a href="/{{ i.category }}">戻る</a>
     {% endfor %}
-
-    <a href="/" class="btn btn-secondary btn-lg fs-1 fw-bold shadow" role="button">
-        戻る
-    </a>
-
-</section>
 </body>
 
 </html>
