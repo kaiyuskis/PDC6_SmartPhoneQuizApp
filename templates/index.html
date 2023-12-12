@@ -6,67 +6,74 @@
 <div class="text-center">
     <div>
         {% if current_user.is_authenticated %}
-            <p>現在ログインしています。<a href="{{ url_for('logout') }}">ログアウト</a></p>
+            <p class="m-0">現在ログインしています。<a href="{{ url_for('logout') }}">ログアウト</a></p>
         {% else %}
-            <p>現在ログインしていません。<a href="{{ url_for('login') }}">ログイン</a></p>
+            <p class="m-0">現在ログインしていません。<a href="{{ url_for('login') }}">ログイン</a></p>
         {% endif %}
     </div>
 
-    <h1 class="display-1 fw-bold"><i class="bi bi-phone"></i>基本動作</h1>
+    <h1 class="display-3 fw-bold pb-3 m-0">📱スマホ教材アプリ</h1>
 
     <div class="container">
-
-        <p class="fs-1 fw-bold">動画のカテゴリ</p>
-
         <div class="row">
             <div class="col">
-                <a href="{{ url_for('telephone') }}" class="btn btn-success mb-4 mt-auto mx-auto w-100 fs-1 fw-bold text-nowrap" role="button">
-                    <i class="bi bi-telephone-fill"></i>電話
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ url_for('mail') }}" class="btn btn-success mb-4 mt-auto mx-auto w-100 fs-1 fw-bold text-nowrap" role="button">
-                    <i class="bi bi-envelope-fill"></i>メール
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <a href="{{ url_for('camera') }}" class="btn btn-success mb-4 mt-auto mx-auto w-100 fs-1 fw-bold text-nowrap" role="button">
-                    <i class="bi bi-camera-fill"></i>カメラ
-                </a>
-            </div>
-            <div class="col">
-                <a href="{{ url_for('internet') }}" class="btn btn-success mb-4 mt-auto mx-auto w-100 fs-1 fw-bold text-nowrap" role="button">
-                    <i class="bi bi-globe2"></i>インターネット
-                </a>
+                <p class="fs-1 fw-bold m-0">動画のカテゴリ</p>
             </div>
         </div>
 
         <div class="row">
-            <div class="col">
-                <a href="{{ url_for('map') }}" class="btn btn-success mb-4 mt-auto mx-auto w-100 fs-1 fw-bold text-nowrap" role="button">
-                    <i class="bi bi-map-fill"></i>地図
+            <div class="col px-1 pb-5 pt-1">
+                <a href="{{ url_for('telephone') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
+                    📞電話
                 </a>
             </div>
-            <div class="col">
-                <a href="{{ url_for('screen') }}" class="btn btn-success mb-4 mt-auto mx-auto w-100 fs-1 fw-bold text-nowrap" role="button">
-                    <i class="bi bi-fullscreen"></i>画面操作
+            <div class="col px-1 pb-5 pt-1">
+                <a href="{{ url_for('mail') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
+                    ✉️メール
+                </a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col px-1 pb-5 pt-1">
+                <a href="{{ url_for('camera') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
+                    📷カメラ
+                </a>
+            </div>
+            <div class="col px-1 pb-5 pt-1">
+                <a href="{{ url_for('internet') }}" class="btn btn-success  w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
+                    🌐インターネット
                 </a>
             </div>
         </div>
 
-        <p class="fs-1 fw-bold">クイズと講演会の情報</p>
+        <div class="row">
+            <div class="col px-1 pb-5 pt-1">
+                <a href="{{ url_for('map') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
+                    🗺️地図
+                </a>
+            </div>
+            <div class="col px-1 pb-5 pt-1">
+                <a href="{{ url_for('screen') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
+                    👆画面操作
+                </a>
+            </div>
+        </div>
 
         <div class="row">
             <div class="col">
-                <a href="{{ url_for('quiz') }}" class="btn btn-success mb-4 mt-auto mx-auto w-100 fs-1 fw-bold text-nowrap" role="button">
-                    <i class="bi bi-question-circle-fill"></i>クイズ
+                <p class="fs-1 fw-bold m-0">クイズと講演会の情報</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col px-1 pb-5 pt-1">
+                <a href="{{ url_for('quiz') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
+                    ❔クイズ
                 </a>
             </div>
-            <div class="col">
-                <a href="{{ url_for('information') }}" class="btn btn-success mb-4 mt-auto mx-auto w-100 fs-1 fw-bold text-nowrap" role="button">
-                    <i class="bi bi-megaphone-fill"></i>講演会の情報
+            <div class="col px-1 pb-5 pt-1">
+                <a href="{{ url_for('information') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
+                    ℹ️講演会の情報
                 </a>
             </div>
         </div>
