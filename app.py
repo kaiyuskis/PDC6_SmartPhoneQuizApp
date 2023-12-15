@@ -95,8 +95,18 @@ def load_user(user_id):
 @app.route('/telephone')
 @login_required
 def telephone():
-    videos = Video.query.filter_by(category='telephone').all()  # 仮にカテゴリが 'telephone' でフィルタリング
-    status = WatchStatus.query.all()
+    videos = Video.query.filter_by(category='telephone').all()
+    status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+    # 視聴履歴がなかったら未視聴のステータスを追加
+    if not status:
+        for id in range(1, 5):
+            status = WatchStatus(user_id=current_user.id, video_id=id, watched=False)
+            db.session.add(status)
+            db.session.commit()
+
+        status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
     return render_template('telephone.html', videos=videos, status=status)
 
 @app.route('/mail')
