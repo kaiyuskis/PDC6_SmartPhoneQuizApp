@@ -14,11 +14,9 @@
     <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
 
     <!-- CSSの読み込み -->
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
 
     <!-- JavaScriptの読み込み -->
-    <script href="{{ url_for('static', filename='js/bootstrap.bundle.js' )}}"></script>
 
     <!-- ファビコンの読み込み -->
     <link rel="apple-touch-icon" type="image/png" href="{{url_for('static', filename='images/favicon/icon-192x192.png')}}">
@@ -30,8 +28,14 @@
     <title>{% block title %}{% endblock %} - 高齢者のスマホ教材</title>
 </head>
 
-<body>
-    {% block body %}{% endblock %}
+<body class="text-black">
+    <header class="text-xl bg-green-700 text-white p-4">
+        <h1 class="font-semibold text-3xl">📱スマホ教材アプリ</h1>
+    </header>
+        {% block body %}{% endblock %}
+    <footer class="text-lg bg-green-700 text-white p-4">
+        <p class="">スマホ教材アプリ</p>
+    </footer>
 </body>
 
 </html>

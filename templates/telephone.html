@@ -6,31 +6,32 @@
 
 <!-- bodyの中身 -->
 {% block body %}
-<header class="text-center mt-2">
-    <h1 class="display-3 fw-bold"><i class="bi bi-telephone-fill"></i>電話</h1>
-</header>
+<div class="py-6">
+    <h1 class="text-3xl font-bold">
+        <i class="bi bi-telephone-fill text-blue-600"></i> 電話
+    </h1>
+</div>
 
-<section class="text-center py-3">
+<section class="mt-8">
     {% for video in videos %}
-        <div class="d-flex justify-content-center">
-            <a href="/video/{{ video.id }}" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                {{ video.name }}
-            </a>
-            {%for i in status %}
-                {% if video.id==i.video_id %}
-                    {% if i.watched==True %}
-                    <p>視聴済み</p>
-                    {% else %}
-                    <p>未視聴</p>
-                    {% endif %}
+    <div class="flex items-center justify-between mb-4">
+        <a href="/video/{{ video.id }}" class="text-lg text-blue-600 hover:underline">
+            {{ video.name }}
+        </a>
+        {% for i in status %}
+            {% if video.id==i.video_id %}
+                {% if i.watched==True %}
+                    <p class="text-sm text-gray-500">視聴済み</p>
+                {% else %}
+                    <p class="text-sm text-gray-500">未視聴</p>
                 {% endif %}
-            {% endfor %}
-        </div>
+            {% endif %}
+        {% endfor %}
+    </div>
     {% endfor %}
 
-    <a href="/" class="btn btn-secondary btn-lg fs-1 fw-bold shadow" role="button">
+    <a href="{{ url_for('index') }}" class="block w-max px-4 py-2 text-lg text-white bg-blue-600 rounded-md hover:bg-blue-700">
         戻る
     </a>
-
 </section>
 {% endblock %}

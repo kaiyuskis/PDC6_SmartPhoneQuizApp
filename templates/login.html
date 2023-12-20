@@ -3,43 +3,35 @@
 
 <!-- bodyの中身 -->
 {% block body %}
-<div class="container my-5">
-    <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="card">
-                <div class="card-header bg-primary text-white">
-                    <h4 class="mb-0">ログイン</h4>
-                </div>
-                <div class="card-body">
-                    <form method="POST" action="/login">
-                        <div class="mb-3">
-                            <label class="form-label">名前の入力：</label>
-                            <input type="text" name="sei" id="sei" class="form-control" placeholder="姓" required>
-                            <input type="text" name="mei" id="mei" class="form-control" placeholder="名" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">表示名の入力:</label>
-                            <input type="text" name="name" id="name" class="form-control" placeholder="例えば、ニックネーム" required>
-                        </div>
-                        <div class="mb-3">
-                            <label class="form-label">生年月日の入力:</label>
-                            <input type="number" name="year" id="year" class="form-control" placeholder="年" required>
-                            <input type="number" name="month" id="month" class="form-control" placeholder="月" required>
-                            <input type="number" name="day" id="day" class="form-control" placeholder="日" required>
-                        </div>
-                        <div class="d-grid">
-                            <button type="submit" class="btn btn-primary">入力完了</button>
-                        </div>
-                    </form>
-                    {% if error %}
-                        <div class="alert alert-danger mt-3">{{ error }}</div>
-                    {% endif %}
-                </div>
-                <div class="card-footer">
-                    <p class="text-center mb-0">アカウントをお持ちでない方は<a href="/register">こちら</a>から新規登録してください。</p>
-                </div>
+<div class="min-h-screen bg-gray-100 flex flex-col items-center justify-center">
+    <h4 class="mb-6 text-2xl font-bold text-gray-900">ログイン</h4>
+    <form method="POST" action="/login" class="w-full max-w-lg">
+        <div class="mb-6">
+            <label for="sei" class="block mb-2 text-lg text-gray-700">名前の入力：</label>
+            <input type="text" name="sei" id="sei" class="block w-full px-4 py-3 mb-3 border rounded-md text-lg text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="姓" required>
+            <input type="text" name="mei" id="mei" class="block w-full px-4 py-3 mb-3 border rounded-md text-lg text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="名" required>
+        </div>
+        <div class="mb-6">
+            <label for="name" class="block mb-2 text-lg text-gray-700">表示名の入力:</label>
+            <input type="text" name="name" id="name" class="block w-full px-4 py-3 mb-3 border rounded-md text-lg text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="例えば、ニックネーム" required>
+        </div>
+        <div class="mb-6">
+            <label for="year" class="block mb-2 text-lg text-gray-700">生年月日の入力:</label>
+            <div class="flex space-x-3">
+            <input type="number" name="year" id="year" class="block w-full px-4 py-3 border rounded-md text-lg text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="年" required>
+            <input type="number" name="month" id="month" class="block w-full px-4 py-3 border rounded-md text-lg text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="月" required>
+            <input type="number" name="day" id="day" class="block w-full px-4 py-3 border rounded-md text-lg text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="日" required>
             </div>
         </div>
+        <div class="mb-6">
+            <button type="submit" class="w-full px-4 py-3 text-lg font-bold text-white bg-blue-600 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700">入力完了</button>
+        </div>
+    </form>
+    {% if error %}
+    <div class="text-red-600">{{ error }}</div>
+    {% endif %}
+    <div class="mt-6">
+        <p class="text-lg text-gray-700">アカウントをお持ちでない方は<a href="/register" class="text-blue-600 hover:text-blue-700">こちら</a>から新規登録してください。</p>
     </div>
 </div>
 {% endblock %}

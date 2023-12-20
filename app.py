@@ -83,7 +83,6 @@ def login():
     return render_template('login.html')
 
 @app.route('/logout')
-@login_required
 def logout():
     logout_user()
     return render_template('index.html')
@@ -157,4 +156,4 @@ def video(id):
     return render_template('video.html', video=video)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0')
