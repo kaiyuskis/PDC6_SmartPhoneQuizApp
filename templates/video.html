@@ -3,8 +3,12 @@
 
 <!-- bodyの中身 -->
 {% block body %}
-{% for i in video %}
-<video controls width="300" height="560" autoplay muted playsinline src="{{ i.path }}"></video>
-<a href="/{{ i.category }}">戻る</a>
-{% endfor %}
+<div class="flex flex-col items-center justify-center bg-light-blue-100 min-h-screen p-4">
+    {% for i in video %}
+        <div class="mb-6 flex flex-col items-center">
+            <video controls width="300" height="560" autoplay muted playsinline src="{{ i.path }}" class="mb-4 shadow-lg rounded-xl"></video>
+            <a href="/{{ i.category }}" class="text-xl text-blue-600 hover:text-blue-700 font-semibold p-4 bg-white rounded-lg shadow-md">戻る</a>
+        </div>
+    {% endfor %}
+</div>
 {% endblock %}

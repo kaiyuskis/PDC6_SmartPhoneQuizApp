@@ -7,7 +7,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['BIZ UDPGothic', 'Noto Color Emoji', 'HiraKakuProN-W6', 'Arial', 'sans-serif'],
+        sans: ['BIZ UDPGothic', 'HiraKakuProN-W6', 'Noto Color Emoji', 'Arial', 'sans-serif'],
       },
     },
   },

@@ -13,8 +13,6 @@ db = SQLAlchemy(app)
 # データベースのテーブル作成
 class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    sei = db.Column(db.String(50), nullable=False)
-    mei = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(50), nullable=False, unique=True)
     year = db.Column(db.Integer, nullable=False)
     month = db.Column(db.Integer, nullable=False)
@@ -47,8 +45,6 @@ def index():
 @app.route('/register', methods=['GET', 'POST'])
 def register():
     if request.method == 'POST':
-        sei = request.form['sei']
-        mei = request.form['mei']
         name = request.form['name']
         year = request.form['year']
         month = request.form['month']
@@ -60,7 +56,7 @@ def register():
             return render_template('register.html', error='この表示名は既に使われています。他の表示名を入力してください。')
 
         else:
-            new_user = User(sei=sei, mei=mei, name=name, year=year, month=month, day=day)
+            new_user = User(name=name, year=year, month=month, day=day)
             db.session.add(new_user)
             db.session.commit()
             return redirect(url_for('login'))
