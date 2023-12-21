@@ -223,7 +223,7 @@ def screen():
     else:
         videos = Video.query.filter_by(category='map').all()
 
-        return render_template('map.html', videos=videos)
+        return render_template('screen.html', videos=videos)
 
 @app.route('/quiz')
 def quiz():
@@ -254,4 +254,4 @@ def video(id):
         return render_template('video.html', video=video)
 
 if __name__ == "__main__":
-    app.run(debug=True, host='0.0.0.0')
+    app.run(debug=True, host='0.0.0.0', port=5001)

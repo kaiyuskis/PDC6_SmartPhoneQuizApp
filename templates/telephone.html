@@ -19,15 +19,19 @@
             <span class="text-lg">
                 ▶️ {{ video.name }}
             </span>
-            {% for i in status %}
-                {% if video.id==i.video_id %}
-                    {% if i.watched==True %}
-                    <p class="text-sm text-green-600">視聴済み</p>
-                    {% else %}
-                    <p class="text-sm text-red-600">未視聴</p>
+            {% if not status %}
+                <p class="text-sm text-green-600">ログインすると視聴履歴が残ります</p>
+            {% else %}
+                {% for i in status %}
+                    {% if video.id==i.video_id %}
+                        {% if i.watched==True %}
+                        <p class="text-sm text-green-600">視聴済み</p>
+                        {% else %}
+                        <p class="text-sm text-red-600">未視聴</p>
+                        {% endif %}
                     {% endif %}
-                {% endif %}
-            {% endfor %}
+                {% endfor %}
+            {% endif %}
         </div>
     </a>
     {% endfor %}
