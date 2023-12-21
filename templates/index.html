@@ -6,82 +6,61 @@
 
 <!-- bodyの中身 -->
 {% block body %}
-<div class="text-center">
-
-    <div class="navbar bg-white py-2 px-1 mb-4">
-        <h1 class="navbar-brand display-3 fw-bold m-0">📱スマホ教材アプリ</h1>
-        <div class="nav-link">
-            {% if current_user.is_authenticated %}
-                <a href="{{ url_for('logout') }}" class="btn btn-secondary"><i class="bi bi-person-circle"></i></a>
-            {% else %}
-                <a href="{{ url_for('login') }}" class="btn btn-secondary"><i class="bi bi-person-circle"></i></a>
-            {% endif %}
-        </div>
+<section class="my-6 px-4">
+    <div class="mb-3">
+        <p class="text-2xl font-bold">動画のカテゴリ</p>
+        <p class="">使い方が分からないアプリや機能を学ぶことができます。</p>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <p class="fs-1 fw-bold m-0">動画のカテゴリ</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col px-1 pb-5 pt-1">
-                <a href="{{ url_for('telephone') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
-                    📞電話
-                </a>
-            </div>
-            <div class="col px-1 pb-5 pt-1">
-                <a href="{{ url_for('mail') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
-                    ✉️メール
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col px-1 pb-5 pt-1">
-                <a href="{{ url_for('camera') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
-                    📷カメラ
-                </a>
-            </div>
-            <div class="col px-1 pb-5 pt-1">
-                <a href="{{ url_for('internet') }}" class="btn btn-success  w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
-                    🌐インターネット
-                </a>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col px-1 pb-5 pt-1">
-                <a href="{{ url_for('map') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
-                    🗺️地図
-                </a>
-            </div>
-            <div class="col px-1 pb-5 pt-1">
-                <a href="{{ url_for('screen') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
-                    👆画面操作
-                </a>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col">
-                <p class="fs-1 fw-bold m-0">クイズと講演会の情報</p>
-            </div>
-        </div>
-
-        <div class="row">
-            <div class="col px-1 pb-5 pt-1">
-                <a href="{{ url_for('quiz') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
-                    ❔クイズ
-                </a>
-            </div>
-            <div class="col px-1 pb-5 pt-1">
-                <a href="{{ url_for('information') }}" class="btn btn-success w-100 h-100 fs-1 fw-bold text-nowrap shadow" role="button">
-                    ℹ️講演会の情報
-                </a>
-            </div>
-        </div>
+    <div class="grid grid-cols-2 gap-4">
+        <a href="{{ url_for('telephone') }}" class="p-3 bg-green-300 text-green-900 font-bold rounded-lg shadow-lg transition-colors hover:bg-green-400" role="button">
+            📞電話
+        </a>
+        <a href="{{ url_for('mail') }}" class="p-3 bg-yellow-300 text-yellow-900 font-bold rounded-lg shadow-lg transition-colors hover:bg-yellow-400" role="button">
+            ✉️メール
+        </a>
+        <a href="{{ url_for('camera') }}" class="p-3 bg-purple-300 text-purple-900 font-bold rounded-lg shadow-lg transition-colors hover:bg-purple-400" role="button">
+            📷カメラ
+        </a>
+        <a href="{{ url_for('internet') }}" class="p-3 bg-red-300 text-red-900 font-bold rounded-lg shadow-lg transition-colors hover:bg-red-400" role="button">
+            🌐インターネット
+        </a>
+        <a href="{{ url_for('map') }}" class="p-3 bg-blue-300 text-blue-900 font-bold rounded-lg shadow-lg transition-colors hover:bg-blue-400" role="button">
+            🗺️地図
+        </a>
+        <a href="{{ url_for('screen') }}" class="p-3 bg-indigo-300 text-indigo-900 font-bold rounded-lg shadow-lg transition-colors hover:bg-indigo-400" role="button">
+            👆画面操作
+        </a>
     </div>
-</div>
+
+    <div class="mt-6">
+        <p class="text-2xl font-bold">クイズと市のイベント</p>
+        <p class="">動画で学んだことをクイズ確認することができます。<br>また、野々市市のイベントの情報を得られます。</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mt-4">
+        <a href="{{ url_for('quiz') }}" class="p-3 bg-orange-300 text-orange-900 font-bold rounded-lg shadow-lg transition-colors hover:bg-orange-400" role="button">
+            ❔クイズ
+        </a>
+        <a href="{{ url_for('information') }}" class="p-3 bg-teal-300 text-teal-900 font-bold rounded-lg shadow-lg transition-colors hover:bg-teal-400" role="button">
+            ℹ️市のイベント
+
+        </a>
+    </div>
+
+    <div class="mt-6">
+        <p class="text-2xl font-bold">アカウント</p>
+        <p class="">ログインすると動画とクイズの履歴が残るようになります。</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mt-4">
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('logout') }}" class="p-3 bg-gray-900 text-white font-bold rounded-lg shadow-lg transition-colors hover:bg-gray-700">ログアウト</a>
+            <a href="#" class="p-3 bg-gray-900 text-white font-bold rounded-lg shadow-lg transition-colors hover:bg-gray-700">履歴</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="p-3 bg-gray-900 text-white font-bold rounded-lg shadow-lg transition-colors hover:bg-gray-700">ログイン</a>
+            <a href="{{ url_for('register') }}" class="p-3 bg-gray-900 text-white font-bold rounded-lg shadow-lg transition-colors hover:bg-gray-700">新規登録</a>
+        {% endif %}
+    </div>
+</section>
 {% endblock %}

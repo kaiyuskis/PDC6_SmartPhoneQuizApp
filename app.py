@@ -1,7 +1,6 @@
 from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import UserMixin, LoginManager, login_user, login_required, logout_user, current_user
-from werkzeug.security import generate_password_hash, check_password_hash
 import re, os
 
 
@@ -93,46 +92,138 @@ def load_user(user_id):
     return db.session.get(User, int(user_id))
 
 @app.route('/telephone')
-@login_required
 def telephone():
-    videos = Video.query.filter_by(category='telephone').all()
-    status = WatchStatus.query.filter_by(user_id=current_user.id).all()
-
-    # 視聴履歴がなかったら未視聴のステータスを追加
-    if not status:
-        for id in range(1, 5):
-            status = WatchStatus(user_id=current_user.id, video_id=id, watched=False)
-            db.session.add(status)
-            db.session.commit()
-
+    if current_user.is_authenticated:
+        videos = Video.query.filter_by(category='telephone').all()
         status = WatchStatus.query.filter_by(user_id=current_user.id).all()
 
-    return render_template('telephone.html', videos=videos, status=status)
+        # 視聴履歴がなかったら未視聴のステータスを追加
+        if not status:
+            for id in range(1, 5):
+                status = WatchStatus(user_id=current_user.id, video_id=id, watched=False)
+                db.session.add(status)
+                db.session.commit()
+
+            status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        return render_template('telephone.html', videos=videos, status=status)
+
+    else:
+        videos = Video.query.filter_by(category='telephone').all()
+
+        return render_template('telephone.html', videos=videos)
 
 @app.route('/mail')
 def mail():
-    videos = Video.query.filter_by(category='mail').all()
-    return render_template('mail.html', videos=videos)
+    if current_user.is_authenticated:
+        videos = Video.query.filter_by(category='mail').all()
+        status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        # 視聴履歴がなかったら未視聴のステータスを追加
+        if not status:
+            for id in range(5, 9):
+                status = WatchStatus(user_id=current_user.id, video_id=id, watched=False)
+                db.session.add(status)
+                db.session.commit()
+
+            status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        return render_template('mail.html', videos=videos, status=status)
+
+    else:
+        videos = Video.query.filter_by(category='mail').all()
+
+        return render_template('mail.html', videos=videos)
+
+
 
 @app.route('/camera')
 def camera():
-    videos = Video.query.filter_by(category='camera').all()
-    return render_template('camera.html', videos=videos)
+    if current_user.is_authenticated:
+        videos = Video.query.filter_by(category='camera').all()
+        status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        # 視聴履歴がなかったら未視聴のステータスを追加
+        if not status:
+            for id in range(9, 14):
+                status = WatchStatus(user_id=current_user.id, video_id=id, watched=False)
+                db.session.add(status)
+                db.session.commit()
+
+            status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        return render_template('camera.html', videos=videos, status=status)
+
+    else:
+        videos = Video.query.filter_by(category='camera').all()
+
+        return render_template('camera.html', videos=videos)
 
 @app.route('/internet')
 def internet():
-    videos = Video.query.filter_by(category='internet').all()
-    return render_template('internet.html', videos=videos)
+    if current_user.is_authenticated:
+        videos = Video.query.filter_by(category='internet').all()
+        status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        # 視聴履歴がなかったら未視聴のステータスを追加
+        if not status:
+            for id in range(14, 18):
+                status = WatchStatus(user_id=current_user.id, video_id=id, watched=False)
+                db.session.add(status)
+                db.session.commit()
+
+            status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        return render_template('internet.html', videos=videos, status=status)
+
+    else:
+        videos = Video.query.filter_by(category='internet').all()
+
+        return render_template('internet.html', videos=videos)
 
 @app.route('/map')
 def map():
-    videos = Video.query.filter_by(category='map').all()
-    return render_template('map.html', videos=videos)
+    if current_user.is_authenticated:
+        videos = Video.query.filter_by(category='map').all()
+        status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        # 視聴履歴がなかったら未視聴のステータスを追加
+        if not status:
+            for id in range(18, 22):
+                status = WatchStatus(user_id=current_user.id, video_id=id, watched=False)
+                db.session.add(status)
+                db.session.commit()
+
+            status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        return render_template('map.html', videos=videos, status=status)
+
+    else:
+        videos = Video.query.filter_by(category='map').all()
+
+        return render_template('map.html', videos=videos)
 
 @app.route('/screen')
 def screen():
-    videos = Video.query.filter_by(category='screen').all()
-    return render_template('screen.html', videos=videos)
+    if current_user.is_authenticated:
+        videos = Video.query.filter_by(category='screen').all()
+        status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        # 視聴履歴がなかったら未視聴のステータスを追加
+        if not status:
+            for id in range(22, 24):
+                status = WatchStatus(user_id=current_user.id, video_id=id, watched=False)
+                db.session.add(status)
+                db.session.commit()
+
+            status = WatchStatus.query.filter_by(user_id=current_user.id).all()
+
+        return render_template('screen.html', videos=videos, status=status)
+
+    else:
+        videos = Video.query.filter_by(category='map').all()
+
+        return render_template('screen.html', videos=videos)
 
 @app.route('/quiz')
 def quiz():
@@ -144,17 +235,23 @@ def information():
 
 @app.route('/video/<int:id>')
 def video(id):
-    video = Video.query.filter_by(id=id)
-    status = WatchStatus.query.filter_by(user_id=current_user.id, video_id=id).first()
-    if not status:
-        status = WatchStatus(user_id=current_user.id, video_id=id, watched=True)
-        db.session.add(status)
+    if current_user.is_authenticated:
+        video = Video.query.filter_by(id=id)
+        status = WatchStatus.query.filter_by(user_id=current_user.id, video_id=id).first()
+        if not status:
+            status = WatchStatus(user_id=current_user.id, video_id=id, watched=True)
+            db.session.add(status)
+        else:
+            status.watched = True
+
+        db.session.commit()
+
+        return render_template('video.html', video=video)
+
     else:
-        status.watched = True
+        video = Video.query.filter_by(id=id)
 
-    db.session.commit()
-
-    return render_template('video.html', video=video)
+        return render_template('video.html', video=video)
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5001)

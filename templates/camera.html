@@ -3,44 +3,38 @@
 
 <!-- bodyの中身 -->
 {% block body %}
-<header class="text-center mt-2">
-    <h1 class="display-3 fw-bold"><i class="bi bi-camera-fill"></i>カメラ</h1>
-</header>
+<div class="pt-4">
+    <h1 class="text-2xl font-bold text-center">
+        📷カメラ
+    </h1>
+</div>
 
-<section class="text-center py-3">
-    <div class="">
-        <div class="d-flex justify-content-center">
-            <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                写真の撮り方
-            </a>
+<section class="p-4">
+    {% for video in videos %}
+    <a href="/video/{{ video.id }}" class="block p-2 rounded-lg shadow my-3 hover:bg-gray-100">
+        <div class="flex flex-col">
+            <span class="text-lg">
+                ▶️ {{ video.name }}
+            </span>
+            {% if not status %}
+                <p class="text-sm text-green-600">ログインすると視聴履歴が残ります</p>
+            {% else %}
+                {% for i in status %}
+                    {% if video.id==i.video_id %}
+                        {% if i.watched==True %}
+                        <p class="text-sm text-green-600">視聴済み</p>
+                        {% else %}
+                        <p class="text-sm text-red-600">未視聴</p>
+                        {% endif %}
+                    {% endif %}
+                {% endfor %}
+            {% endif %}
         </div>
+    </a>
+    {% endfor %}
 
-        <div class="d-flex justify-content-center">
-            <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                動画の撮り方
-            </a>
-        </div>
-
-        <div class="d-flex justify-content-center">
-            <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                ズーム機能などの使い方
-            </a>
-        </div>
-
-        <div class="d-flex justify-content-center">
-            <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                写真の見方
-            </a>
-        </div>
-
-        <div class="d-flex justify-content-center">
-            <a href="" class="btn btn-primary btn-lg w-75 mb-5 fs-1 fw-bold shadow" role="button">
-                アルバムの作り方
-            </a>
-        </div>
-    </div>
-    <div class="">
-        <a href="/" class="btn btn-secondary btn-lg fs-1 fw-bold shadow" role="button">
+    <div class="mt-6">
+        <a href="{{ url_for('index') }}" class="block w-full bg-gray-700 text-white text-center text-lg p-3 rounded-lg shadow hover:bg-gray-900 transition-colors">
             戻る
         </a>
     </div>
