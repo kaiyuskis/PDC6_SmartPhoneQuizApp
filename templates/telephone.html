@@ -6,32 +6,36 @@
 
 <!-- bodyの中身 -->
 {% block body %}
-<div class="py-6">
-    <h1 class="text-3xl font-bold">
-        <i class="bi bi-telephone-fill text-blue-600"></i> 電話
+<div class="pt-4">
+    <h1 class="text-2xl font-bold text-center">
+        📞電話
     </h1>
 </div>
 
-<section class="mt-8">
+<section class="p-4">
     {% for video in videos %}
-    <div class="flex items-center justify-between mb-4">
-        <a href="/video/{{ video.id }}" class="text-lg text-blue-600 hover:underline">
-            {{ video.name }}
-        </a>
-        {% for i in status %}
-            {% if video.id==i.video_id %}
-                {% if i.watched==True %}
-                    <p class="text-sm text-gray-500">視聴済み</p>
-                {% else %}
-                    <p class="text-sm text-gray-500">未視聴</p>
+    <a href="/video/{{ video.id }}" class="block p-2 rounded-lg shadow my-3 hover:bg-gray-100">
+        <div class="flex flex-col">
+            <span class="text-lg">
+                ▶️ {{ video.name }}
+            </span>
+            {% for i in status %}
+                {% if video.id==i.video_id %}
+                    {% if i.watched==True %}
+                    <p class="text-sm text-green-600">視聴済み</p>
+                    {% else %}
+                    <p class="text-sm text-red-600">未視聴</p>
+                    {% endif %}
                 {% endif %}
-            {% endif %}
-        {% endfor %}
-    </div>
+            {% endfor %}
+        </div>
+    </a>
     {% endfor %}
 
-    <a href="{{ url_for('index') }}" class="block w-max px-4 py-2 text-lg text-white bg-blue-600 rounded-md hover:bg-blue-700">
-        戻る
-    </a>
+    <div class="mt-6">
+        <a href="{{ url_for('index') }}" class="block w-full bg-gray-700 text-white text-center text-lg p-3 rounded-lg shadow hover:bg-gray-900 transition-colors">
+            戻る
+        </a>
+    </div>
 </section>
 {% endblock %}
