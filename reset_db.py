@@ -9,9 +9,9 @@ with app.app_context():
     # 初期データ
 
     videos = [
-        Video(name="電話のかけ方", path="../static/videos/0_Replay_Final1701407673.MP4", category="telephone"),
-        Video(name="連絡先の追加方法", path="../static/videos/1_Replay_Final1701408033.MP4", category="telephone"),
-        Video(name="着信履歴の確認方法", path="../static/videos/2_Replay_Final1701408088.MP4", category="telephone"),
+        Video(name="電話のかけ方", path="../static/videos/電話のかけ方.mov", category="telephone"),
+        Video(name="連絡先の追加方法", path="../static/videos/連絡先の追加方法.mov", category="telephone"),
+        Video(name="着信履歴の確認方法", path="../static/videos/着信履歴の確認方法.mov", category="telephone"),
         Video(name="キーパッドの使い方", path="../static/videos/3_Replay_Final1701408462.MP4", category="telephone"),
         Video(name="受信メールの見方", path="../static/videos/3_Replay_Final1701408462.MP4", category="mail"),
         Video(name="メールの送り方", path="../static/videos/3_Replay_Final1701408462.MP4", category="mail"),
