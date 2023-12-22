@@ -3,32 +3,34 @@
 
 <!-- bodyの中身 -->
 {% block body %}
-<div class="min-h-screen bg-light-blue-100 flex flex-col items-center justify-center px-4 sm:px-6 lg:px-8">
-    <h4 class="mb-6 text-3xl font-bold text-gray-900">ログイン</h4>
-    <div class="w-full max-w-2xl px-6 py-8 bg-white shadow-md overflow-hidden sm:rounded-lg">
+<div class="min-h-full bg-blue-50 shadow-sm flex flex-col items-center justify-center px-3 sm:px-6 lg:px-8">
+    <h4 class="mb-4 text-3xl font-bold text-black">👤ログイン</h4>
+    <div class="w-full max-w-2xl px-3 pb-5 bg-white shadow-lg overflow-hidden rounded-lg">
         <form action="{{ url_for('login') }}" method="post">
             <div class="mb-6">
-                <label for="name" class="block mb-2 text-xl text-gray-700">名前：</label>
-                <input type="text" name="name" id="name" class="block w-full px-4 py-3 mb-3 border rounded-lg text-xl text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="本名でもニックネームでも構いません" required>
+                <label for="name" class="block my-2 text-xl text-black">名前：</label>
+                <input type="text" name="name" id="name" class="block w-full px-4 py-3 mb-3 border-2 rounded-md text-lg text-black bg-white border-gray-900 focus:outline-none focus:border-blue-500" placeholder="登録した名前" value="{{ name }}" required>
+                {% if error %}
+                <div class="text-red-600 bg-red-50 text-lg rounded p-2">{{ error }}</div>
+                {% endif %}
             </div>
+
             <div class="mb-6">
-                <label for="year" class="block mb-2 text-xl text-gray-700">生年月日：</label>
+                <label for="year" class="block mb-2 text-xl text-black">生年月日：</label>
                 <div class="flex space-x-3">
-                    <input type="number" name="year" id="year" class="block w-1/3 px-4 py-3 border rounded-lg text-xl text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="年" required>
-                    <input type="number" name="month" id="month" class="block w-1/3 px-4 py-3 border rounded-lg text-xl text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="月" required>
-                    <input type="number" name="day" id="day" class="block w-1/3 px-4 py-3 border rounded-lg text-xl text-gray-700 bg-white border-gray-300 focus:outline-none focus:border-blue-500" placeholder="日" required>
+                    <input type="number" name="year" id="year" class="block w-1/3 px-4 py-3 border-2 rounded-md text-lg text-black bg-white border-gray-900 focus:outline-none focus:border-blue-500" placeholder="年" value="{{ year }}" required>
+                    <input type="number" name="month" id="month" class="block w-1/3 px-4 py-3 border-2 rounded-md text-lg text-black bg-white border-gray-900 focus:outline-none focus:border-blue-500" placeholder="月" value="{{ month }}" required>
+                    <input type="number" name="day" id="day" class="block w-1/3 px-4 py-3 border-2 rounded-md text-lg text-black bg-white border-gray-900 focus:outline-none focus:border-blue-500" placeholder="日" value="{{ day }}" required>
                 </div>
             </div>
             <div class="mb-6">
-                <button type="submit" class="w-full px-4 py-3 text-xl font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">入力完了</button>
+                <button type="submit" class="w-full px-4 py-3 text-xl font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-600 focus:outline-none focus:bg-blue-600">✒️入力完了</button>
             </div>
         </form>
-        {% if error %}
-        <div class="text-red-600">{{ error }}</div>
-        {% endif %}
         <div class="mt-6">
-            <p class="text-xl text-gray-700">アカウントをお持ちでない方は<a href="{{ url_for('register') }}" class="text-blue-500 hover:text-blue-600">こちら</a>から新規登録してください。</p>
+            <p class="text-xl text-black">アカウントをお持ちでない方は<a href="{{ url_for('register') }}" class="text-blue-500 hover:text-blue-600 hover:underline">こちら</a>から新規登録してください。</p>
         </div>
     </div>
+    <a href="{{ url_for('index') }}" class="mt-6 text-xl font-bold text-white bg-slate-600 rounded-md px-4 py-3 shadow-md hover:bg-slate-700 transition-colors">🏠ホームに戻る</a>
 </div>
 {% endblock %}

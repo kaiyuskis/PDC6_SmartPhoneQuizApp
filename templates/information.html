@@ -3,9 +3,10 @@
 
 <!-- bodyの中身 -->
 {% block body %}
-    <h1>講演会の情報</h1>
-    <p>未実装</p>
-    <a href="{{ url_for('index') }}" class="btn btn-secondary btn-lg fs-1 fw-bold shadow" role="button">
-        戻る
-    </a>
+    <h1 class="text-3xl my-3">市のイベント</h1>
+    <p class="">未実装<br>InstagramAPIで野々市市の公式の投稿を持ってくる予定</p>
+    <a href="https://www.instagram.com/nonoichicity/" class="text-blue-600 underline">https://www.instagram.com/nonoichicity/</a>
+    <div class="mt-10">
+        <a href="{{ url_for('index') }}" class="text-center mt-6 text-xl font-bold text-white bg-slate-600 rounded-md px-4 py-3 shadow-md hover:bg-slate-700 transition-colors">🏠ホームに戻る</a>
+    </div>
 {% endblock %}

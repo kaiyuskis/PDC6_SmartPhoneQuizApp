@@ -9,13 +9,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
 
     <!-- TailwindCSSの読み込み -->
     <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
 
     <!-- ファビコンの読み込み -->
-    <link rel="apple-touch-icon" type="image/png" href="{{url_for('static', filename='images/favicon/icon-192x192.png')}}">
-    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/favicon/apple-touch-icon-180x180.png')}}">
+    <link rel="apple-touch-icon" type="image/png" href="{{url_for('static', filename='images/favicon/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/favicon/favicon.svg')}}">
 
     {% block head %}{% endblock %}
 
@@ -31,7 +32,7 @@
         <main class="flex-1 container mx-auto max-w-screen-sm">
             {% block body %}{% endblock %}
         </main>
-        <footer class="mt-auto text-center text-sm bg-green-700 text-white p-1">
+        <footer class="mt-auto text-center text-sm font-bold bg-green-700 text-white p-1">
             <p class="">スマホ教材アプリ - PD実践C6</p>
         </footer>
     </div>

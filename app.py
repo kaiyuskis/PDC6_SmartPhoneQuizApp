@@ -53,7 +53,7 @@ def register():
         # ユーザー名の重複をチェック
         user = User.query.filter_by(name=name).first()
         if user:
-            return render_template('register.html', error='この表示名は既に使われています。他の表示名を入力してください。')
+            return render_template('register.html', name=name, year=year, month=month, day=day, error='この名前は既に使われています。他の表示名を入力してください。')
 
         else:
             new_user = User(name=name, year=year, month=month, day=day)
@@ -67,13 +67,16 @@ def register():
 def login():
     if request.method == 'POST':
         name = request.form['name']
+        year = request.form['year']
+        month = request.form['month']
+        day = request.form['day']
 
         user = User.query.filter_by(name=name).first()
         if user:
             login_user(user)
             return redirect(url_for('index'))
         else:
-            return render_template('login.html', error='入力した情報が間違っているか、登録されていません。')
+            return render_template('login.html', name=name, year=year, month=month, day=day, error='入力した情報が間違っているか、登録されていません。')
 
     return render_template('login.html')
 
@@ -89,11 +92,12 @@ def load_user(user_id):
 
 @app.route('/telephone')
 def telephone():
+    # ユーザーがログインしている場合
     if current_user.is_authenticated:
         videos = Video.query.filter_by(category='telephone').all()
         status = WatchStatus.query.filter_by(user_id=current_user.id).all()
 
-        # 視聴履歴がなかったら未視聴のステータスを追加
+        # 視聴履歴がなかったら「未視聴」のステータスを追加
         if not status:
             for id in range(1, 5):
                 status = WatchStatus(user_id=current_user.id, video_id=id, watched=False)
@@ -104,6 +108,7 @@ def telephone():
 
         return render_template('telephone.html', videos=videos, status=status)
 
+    # ユーザーがログインしていない場合
     else:
         videos = Video.query.filter_by(category='telephone').all()
 
