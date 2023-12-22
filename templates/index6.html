@@ -1,0 +1,66 @@
+<!-- base.htmlからの引継ぎ -->
+{% extends "base.html" %}
+
+<!-- titleの中身 -->
+{% block title %}ホーム{% endblock %}
+
+<!-- bodyの中身 -->
+{% block body %}
+<section class="my-6 px-4">
+    <div class="mb-3">
+        <p class="text-2xl font-bold">動画のカテゴリ</p>
+        <p class="">使い方が分からないアプリや機能を学ぶことができます。</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4">
+        <a href="{{ url_for('telephone') }}" class="p-3 bg-gradient-to-r from-green-400 to-lime-300 text-green-900 text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-green-400" role="button">
+            📞電話
+        </a>
+        <a href="{{ url_for('mail') }}" class="p-3 bg-gradient-to-r from-yellow-400 to-yellow-100 text-yellow-900 text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-yellow-400" role="button">
+            ✉️メール
+        </a>
+        <a href="{{ url_for('camera') }}" class="p-3 bg-gradient-to-r from-purple-400 to-violet-200 text-purple-900 text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-purple-400" role="button">
+            📷カメラ
+        </a>
+        <a href="{{ url_for('internet') }}" class="p-3 bg-gradient-to-r from-red-400 to-pink-200 text-red-900 text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-red-400" role="button">
+            🌐インターネット
+        </a>
+        <a href="{{ url_for('map') }}" class="p-3 bg-gradient-to-r from-blue-400 to-sky-200 text-blue-900 text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-blue-400" role="button">
+            🗺️地図
+        </a>
+        <a href="{{ url_for('screen') }}" class="p-3 bg-gradient-to-r from-indigo-400 to-indigo-200 text-indigo-900 text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-indigo-400" role="button">
+            👆画面操作
+        </a>
+    </div>
+
+    <div class="mt-6">
+        <p class="text-2xl font-bold">クイズと市のイベント</p>
+        <p class="">動画で学んだことをクイズ確認することができます。<br>また、野々市市のイベントの情報を得られます。</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mt-4">
+        <a href="{{ url_for('quiz') }}" class="p-3 bg-gradient-to-r from-orange-400 to-orange-200 text-orange-900 text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-orange-400" role="button">
+            ❔クイズ
+        </a>
+        <a href="{{ url_for('information') }}" class="p-3 bg-gradient-to-r from-teal-400 to-teal-200 text-teal-900 text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-teal-400" role="button">
+            ℹ️市のイベント
+
+        </a>
+    </div>
+
+    <div class="mt-6">
+        <p class="text-2xl font-bold">アカウント</p>
+        <p class="">ログインすると動画とクイズの履歴が残るようになります。</p>
+    </div>
+
+    <div class="grid grid-cols-2 gap-4 mt-4">
+        {% if current_user.is_authenticated %}
+            <a href="{{ url_for('logout') }}" class="p-3 bg-gradient-to-r from-gray-900 to-slate-700 text-white text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-gray-900">ログアウト</a>
+            <a href="#" class="p-3 bg-gray-900 to-slate-700 text-white text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-gray-900">履歴</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="p-3 bg-gradient-to-r from-gray-900 to-slate-700 text-white text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-gray-900">ログイン</a>
+            <a href="{{ url_for('register') }}" class="p-3 bg-gradient-to-r from-gray-900 to-slate-700 text-white text-lg font-bold rounded-lg shadow-lg transition hover:translate-y-0.5 hover:scale-105 hover:bg-gray-900">新規登録</a>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fontsの読み込み -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=BIZ+UDPGothic:wght@400;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+
+    <!-- TailwindCSSの読み込み -->
+    <link href="{{ url_for('static', filename='css/output.css') }}" rel="stylesheet">
+
+    <!-- ファビコンの読み込み -->
+    <link rel="apple-touch-icon" type="image/png" href="{{url_for('static', filename='images/favicon/apple-touch-icon.png')}}">
+    <link rel="icon" type="image/png" href="{{url_for('static', filename='images/favicon/favicon.svg')}}">
+
+    {% block head %}{% endblock %}
+
+    <!-- タイトル -->
+    <title>{% block title %}{% endblock %} - 高齢者のスマホ教材</title>
+</head>
+
+<body>
+    <div class="text-black flex flex-col h-screen">
+        <header class="text-xl bg-black text-white p-3">
+            <h1 class="font-semibold text-3xl">📱スマホ教材アプリ</h1>
+        </header>
+        <main class="flex-1 container mx-auto max-w-screen-sm">
+            {% block body %}{% endblock %}
+        </main>
+        <footer class="mt-auto text-center text-sm font-bold bg-black text-white p-1">
+            <p class="">スマホ教材アプリ - PD実践C6</p>
+        </footer>
+    </div>
+</body>
+
+</html>
